@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/simple-sidebar.css" rel="stylesheet">
+
+    <script type="text/javascript">
+
+        function show(choice) {
+            if (choice == 1) {
+                document.getElementById('sh1').style.display = 'block';
+                document.getElementById('sh2').style.display = 'none';
+                document.getElementById('sh3').style.display = 'none';
+            } else if (choice == 2) {
+                document.getElementById('sh1').style.display = 'none';
+                document.getElementById('sh2').style.display = 'block';
+                document.getElementById('sh3').style.display = 'none';
+            } else if (choice == 3) {
+                document.getElementById('sh1').style.display = 'none';
+                document.getElementById('sh2').style.display = 'none';
+                document.getElementById('sh3').style.display = 'block';
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">Start Bootstrap</div>
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <form th:action="@{accesories/premium}" method="get">
+            <p>
+                <input type="radio" name="r1" onclick="show(1)"/> PODSTAWOWY
+                <input type="radio" name="r1" onclick="show(2)"/> PREMIUM
+                <input type="radio" name="r1" onclick="show(3)"/> LUX
+            </p>
+            <div id="sh1" th:object="${basic}">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th> Nazwa</th>
+                        <th> Ilość</th>
+                        <th> Rabat</th>
+                        <th> Cena jedn. detal</th>
+                        <th> Cena jedn. zakup</th>
+                        <th> Razem zakup</th>
+                        <th> Razem detal</th>
+                        <th> Zysk</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="accessories : ${basic}">
+                        <td><span th:text="${accessories.getName()}"> Name </span></td>
+                        <td><span th:text="${accessories.getQuantity()}"> Name </span></td>
+                        <td><span th:text="${accessories.getDiscount()}"> Name </span></td>
+                        <td><span th:text="${accessories.getUnitDetalPrice()}"> Name </span></td>
+                        <td><span th:text="${accessories.getUnitPurchasePrice()}"> Name </span></td>
+                        <td><span th:text="${accessories.getAllpricePurchase()}"> Name </span></td>
+                        <td><span th:text="${accessories.getAllpriceAfterDiscount()}"> Name </span></td>
+                        <td><span th:text="${accessories.getAllprofit()}"> Manufacturer </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="sh2" th:object="${premium}">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th> Nazwa</th>
+                        <th> Ilość</th>
+                        <th> Rabat</th>
+                        <th> Cena jedn. detal</th>
+                        <th> Cena jedn. zakup</th>
+                        <th> Razem zakup</th>
+                        <th> Razem detal</th>
+                        <th> Zysk</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="accessories : ${premium}">
+                        <td><span th:text="${accessories.getName()}"> Name </span></td>
+                        <td><span th:text="${accessories.getQuantity()}"> Name </span></td>
+                        <td><span th:text="${accessories.getDiscount()}"> Name </span></td>
+                        <td><span th:text="${accessories.getUnitDetalPrice()}"> Name </span></td>
+                        <td><span th:text="${accessories.getUnitPurchasePrice()}"> Name </span></td>
+                        <td><span th:text="${accessories.getAllpricePurchase()}"> Name </span></td>
+                        <td><span th:text="${accessories.getAllpriceAfterDiscount()}"> Name </span></td>
+                        <td><span th:text="${accessories.getAllprofit()}"> Manufacturer </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="sh3" th:object="${lux}">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th> Nazwa</th>
+                        <th> Ilość</th>
+                        <th> Rabat</th>
+                        <th> Cena jedn. detal</th>
+                        <th> Cena jedn. zakup</th>
+                        <th> Razem zakup</th>
+                        <th> Razem detal</th>
+                        <th> Zysk</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="accessories : ${lux}">
+                        <td><span th:text="${accessories.getName()}"> Name </span></td>
+                        <td><span th:text="${accessories.getQuantity()}"> Name </span></td>
+                        <td><span th:text="${accessories.getDiscount()}"> Name </span></td>
+                        <td><span th:text="${accessories.getUnitDetalPrice()}"> Name </span></td>
+                        <td><span th:text="${accessories.getUnitPurchasePrice()}"> Name </span></td>
+                        <td><span th:text="${accessories.getAllpricePurchase()}"> Name </span></td>
+                        <td><span th:text="${accessories.getAllpriceAfterDiscount()}"> Name </span></td>
+                        <td><span th:text="${accessories.getAllprofit()}"> Manufacturer </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+
+</body>
+
+</html>
